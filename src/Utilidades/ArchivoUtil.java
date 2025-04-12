@@ -3,6 +3,8 @@ package Utilidades;
 import java.io.*;
 import java.util.*;
 
+import static InicioSesion.Administrador.*;
+
 public class ArchivoUtil {
 
     public interface Registrable {
@@ -22,33 +24,42 @@ public class ArchivoUtil {
 
     public static List<String> leerPorTipo(String tipo) {
         List<String> resultados = new ArrayList<>();
-        StringBuilder bloque = new StringBuilder();
 
         try (BufferedReader br = new BufferedReader(new FileReader("Usuarios.dat"))) {
             String linea;
-            boolean tipoEncontrado = false;
-
             while ((linea = br.readLine()) != null) {
-                if (linea.startsWith("Tipo: ")) {
-                    tipoEncontrado = linea.contains(tipo);
-                    bloque = new StringBuilder(); // nuevo bloque
-                }
-
-                if (tipoEncontrado) {
-                    bloque.append(linea).append("\n");
-                }
-
-                if (linea.contains("-----------------------") && tipoEncontrado) {
-                    resultados.add(bloque.toString());
-                    tipoEncontrado = false;
+                if (linea.startsWith(tipo + ";")) {
+                    resultados.add(linea);
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return resultados;
     }
 
+    public static void cargarDesdeArchivo(Map<String, String> Tipo) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Usuarios.dat"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.startsWith("Administrador")) {
+                    String[] partes = linea.split(";");
+                    if (partes.length == 3) {
+                        String usuario = partes[1].trim().toLowerCase();
+                        String contraseña = partes[2].trim();
+                        Tipo.put(usuario, contraseña);
+                    }
+                } else if (linea.startsWith("Empleado")){
+                    String[] partes = linea.split(";");
+                    if(partes.length == 3){
+                        String usuario = partes[1].trim().toLowerCase();
+                        String contraseña = partes[2].trim();
+                        Tipo.put(usuario, contraseña);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al cargar Usuario: " + e.getMessage());
+        }
+    }
 }

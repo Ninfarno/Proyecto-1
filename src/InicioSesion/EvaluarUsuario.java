@@ -1,19 +1,38 @@
 package InicioSesion;
 
-public class EvaluarUsuario {
+import java.util.Scanner;
 
-    public enum TipoUsuario{
+public class EvaluarUsuario {
+    static Scanner scanner = new Scanner(System.in);
+
+    public enum TipoUsuario {
         ADMINISTRADOR,
         EMPLEADO,
         CLIENTE
     }
 
-    public static TipoUsuario evaluar(String Usuario){
+    public static TipoUsuario evaluar(String Usuario) {
         //Punto de guardado: Implementar que si el usuario es ADMINISTRADOR O EMPLEADO solicite contraseña y verificar
-        if(Administrador.existe(Usuario)){
-            return TipoUsuario.ADMINISTRADOR;
-        } else if (Empleados.existe(Usuario)){
-            return TipoUsuario.EMPLEADO;
+        if (Administrador.existe(Usuario)) {
+            for (int i = 0; i < 3; i++) {
+                System.out.println("Contraseña: ");
+                if (Administrador.validarCredenciales(Usuario, scanner.nextLine())) {
+                    return TipoUsuario.ADMINISTRADOR;
+                } else {
+                    System.out.println("Contraseña incorrecta");
+                }
+            }
+            return null;
+        } else if (Empleados.existe(Usuario)) {
+            for (int i = 0; i < 3; i++) {
+                System.out.println("Contraseña: ");
+                if (Empleados.validarCredenciales(Usuario, scanner.nextLine())) {
+                    return TipoUsuario.EMPLEADO;
+                } else {
+                    System.out.println("Contraseña incorrecta");
+                }
+            }
+            return null;
         } else {
             return TipoUsuario.CLIENTE;
         }
