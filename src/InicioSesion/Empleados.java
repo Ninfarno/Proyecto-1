@@ -1,17 +1,18 @@
 package InicioSesion;
 
-import java.util.HashSet;
-import java.util.Set;
+import Utilidades.ArchivoUtil;
+
+import java.util.*;
 
 public class Empleados {
-    private static Set<String> listaEmpleados = new HashSet<>();
+    private static Map<String, String> empleados = new HashMap<>();
 
-    static {
-        listaEmpleados.add("juan");
-        listaEmpleados.add("maria");
+    public static void guardarEmpleado(String usuario, String contraseña){
+        empleados.put(usuario.toLowerCase(), contraseña);
+        ArchivoUtil.guardarGeneral("Empleado", usuario + ";" + contraseña);
     }
 
     public static boolean existe(String usuario) {
-        return listaEmpleados.contains(usuario.toLowerCase());
+        return empleados.containsKey(usuario.toLowerCase());
     }
 }

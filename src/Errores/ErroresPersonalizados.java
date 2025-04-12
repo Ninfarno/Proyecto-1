@@ -9,8 +9,14 @@ public class ErroresPersonalizados {
     }
 
     // Más valores que los permitidos (por ejemplo, fuera del tamaño de un arreglo)
-    public static class Sobrevalores extends Exception {
-        public Sobrevalores(String mensaje) {
+    public static class ValorInvalido extends Exception {
+        public ValorInvalido(String mensaje) {
+            super(mensaje);
+        }
+    }
+
+    public static class ValorInvalido1 extends Exception {
+        public ValorInvalido1(String mensaje) {
             super(mensaje);
         }
     }

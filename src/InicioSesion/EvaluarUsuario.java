@@ -9,6 +9,7 @@ public class EvaluarUsuario {
     }
 
     public static TipoUsuario evaluar(String Usuario){
+        //Punto de guardado: Implementar que si el usuario es ADMINISTRADOR O EMPLEADO solicite contraseña y verificar
         if(Administrador.existe(Usuario)){
             return TipoUsuario.ADMINISTRADOR;
         } else if (Empleados.existe(Usuario)){

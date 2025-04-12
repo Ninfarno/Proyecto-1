@@ -1,6 +1,7 @@
 package Menu;
 
 import InicioSesion.*;
+import Ticket.*;
 
 public class MenuPrincipal {
 
@@ -14,7 +15,11 @@ public class MenuPrincipal {
                 MenuEmpleado.Menu();
                 break;
             case CLIENTE:
-                MenuCliente.Menu();
+                boolean Salida = false;
+                while (!Salida) {
+                    Salida = MenuCliente.Menu();
+                }
+                System.out.println("Vuelva Pronto!!");
                 break;
         }
     }
