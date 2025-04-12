@@ -7,10 +7,10 @@ Escribir aqui Actualizaciones e implementaciones que se hagan.
                  ciertas clases y metodos a este, Mostrar vuelos disponibles con sus horarios y asientos disponibles
                  (Requiere actualizacion).
   - Resumen:
-    Cliente: Incompleto (Gran Avance).
-    Administrador: Incompleto (Avance).
-    Vuelos: Requiere modificacion (Avance).
-    Empleados: null (Solo Implementacion).
-    Menu: Incompleto (Avance).
+    - Cliente: Incompleto (Gran Avance).
+    - Administrador: Incompleto (Avance).
+    - Vuelos: Requiere modificacion (Avance).
+    - Empleados: null (Solo Implementacion).
+    - Menu: Incompleto (Avance).
     
                    
